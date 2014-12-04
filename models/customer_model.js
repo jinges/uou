@@ -1,0 +1,57 @@
+var mongoose=require('mongoose');
+var Schema = mongoose.Schema;
+
+var CustomerSchema = new Schema({
+	id:Schema.Types.ObjectId,
+	userName: String,
+	passWord: String,
+	name: String,
+	gender: Number,
+	photo : String,
+	birthDay:String,
+	score: {
+		type: Number, 
+		default:10, 
+		min:10
+	},
+	regDate : Date,
+	logDate:[Date]
+});
+
+var CustomerModel = mongoose.model('Merchant', CustomerSchema);
+
+var CustomerObj = {
+	save: function (obj, callback){
+		var Customer = new CustomerModel(obj);
+		Customer.save(function (err, obj) {
+			callback(err, obj);
+		});
+	},
+	delete: function (id, callback) {
+		CustomerModel.remove({_id: id}, function (err) {
+			callback(err);
+		});
+	},
+	update: function (Customer, callback) {
+		CustomerModel.update({id: Customer.id}, Customer, function (err) {
+			callback(err);
+		}); 
+	},
+	find: function (query, callback) {
+		CustomerModel.find(query, function (err, customers) {
+			callback(err, customers);
+		});
+	},
+	upScore: function (id, score, callback){
+		CustomerModel.update({"_id": id}, {"$inc": {"score": score}}, function (err) {
+			callback(err);
+		});
+	},
+	upLogDate: function (id, callback){
+		CustomerModel.update({"_id": id}, {"$push": {"logDate": new Date()}}, function ( err ){
+			callback(err);
+		})
+	}
+}
+
+module.exports = CustomerObj;

@@ -1,0 +1,33 @@
+<% include layout/header.html %>
+<article class="loginForm">
+	<form class="form-horizontal" method="post" role="form">
+		<div class="form-group">
+			<label for="inputUserName" class="col-sm-3 control-label">邮箱</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="inputUserName" name="userName" placeholder="邮箱/手机号码">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputPassWord" class="col-sm-3 control-label">密码</label>
+			<div class="col-sm-9">
+				<input type="password" class="form-control" id="inputPassWord" name="userPassWord" placeholder="密码">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-3 col-sm-9">
+				<div class="checkbox">
+					<label>
+						<input id="rememberUser" name="rememberUser" type="checkbox">记住密码
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-3 col-sm-9">
+				<button type="submit" id="loginBtn" class="btn btn-default">登录</button>
+			</div>
+		</div>
+	</form>
+</article >
+
+<% include layout/footer.html %> 
