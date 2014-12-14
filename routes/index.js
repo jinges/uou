@@ -1,22 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-var indexCtr = require('../controlls/admin/index_controller');
-var userCtr = require('../controlls/admin/user_controller');
+var indexCtr = require('../controlls/index_controller');
+var userCtr = require('../controlls/customer_controller');
 
 /* index */
 router.route('/')
 	.get(function (req, res){
-		res.redirect('/login');
+		res.redirect('/signIn');
 	});
 
-/*  login   */
-router.route('/login')
-		.get(userCtr.init)
-		.post(userCtr.login);
+/*  singIn   */
+router.route('/signIn')
+		.get(userCtr.signInPage)
+		.post(userCtr.signIn);
 
-/* /admin/index */
-router.route('/admin/index')
-		.get(indexCtr.init);
 
 module.exports = router;

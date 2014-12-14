@@ -1,6 +1,5 @@
 var async =  require('async');
 
-var User = require('../models/user_model');
 var unit = require('../unit/index');
 
 var indexCtrl = {

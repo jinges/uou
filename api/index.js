@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var unit=require('../unit/index');
 
-var User = require('../models/admin/user_model');
+var User = require('../models/auser_model');
 
 router.get('/regist', function (req, res){
 	var query=req.query;
