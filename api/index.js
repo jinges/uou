@@ -1,23 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var unit=require('../unit/index');
 
-var User = require('../models/auser_model');
+var unit = require('../unit/index');
+var customerCtr = require('../controlls/customer_controller');
 
-router.get('/regist', function (req, res){
-	var query=req.query;
-	User.save({
-		name : query.name,
-		userName: query.username,
-		passWord: unit.setPassword(query.password),
-		photo: ''
-	}, function(err, user){
-		if(err){
-			console.log(err);
-			res.jsonp({err: err});
-			return false;
-		}
-		res.jsonp({uid: user._id});
-	});
-});
+
+/****** 接口 ******/
+//注册
+router.get('/signUp', customerCtr.signUp);
+//登录
+router.get('/signIn', customerCtr.signIn);
+
+
+
 module.exports = router;
