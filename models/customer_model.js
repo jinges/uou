@@ -2,7 +2,7 @@ var mongoose=require('mongoose');
 var Schema = mongoose.Schema;
 
 var CustomerSchema = new Schema({
-	id:Schema.Types.ObjectId,
+	_id:Schema.Types.ObjectId,
 	userName: String,
 	passWord: String,
 	name: String,
@@ -18,11 +18,13 @@ var CustomerSchema = new Schema({
 	logDate:[Date]
 });
 
-var CustomerModel = mongoose.model('Merchant', CustomerSchema);
+var CustomerModel = mongoose.model('Customer', CustomerSchema);
 
 var CustomerObj = {
 	save: function (obj, callback){
+		obj._id=new mongoose.Types.ObjectId;
 		var Customer = new CustomerModel(obj);
+	
 		Customer.save(function (err, obj) {
 			callback(err, obj);
 		});
@@ -42,7 +44,7 @@ var CustomerObj = {
 			callback(err, customers);
 		});
 	},
-	upScore: function (id, score, callback){
+	modifyScore: function (id, score, callback){
 		CustomerModel.update({"_id": id}, {"$inc": {"score": score}}, function (err) {
 			callback(err);
 		});
