@@ -16,10 +16,25 @@ var customerCtr = {
 		
 		Customer.save(customer, function (err, obj){
 			if(err){
-			    return res.stastus(500).jsonp({error: err});
+			    return res.status(500).jsonp({error: err});
 			}
 			return res.jsonp(obj);
 		});
+	},
+	checkMember: function (req, res) {
+		var  userName = req.param('username');
+
+		Customer.find({'userName': userName}, function (err, user) {
+			if(err){ 
+				return res.status(500).jsonp({error: err})
+			}
+
+			if(user.length<1){
+				return res.jsonp({status: 0})
+			} 
+
+			return res.jsonp({status: 1});
+		})
 	},
 	signIn: function (req, res){
 		var  userName = req.param('username')
@@ -36,29 +51,27 @@ var customerCtr = {
 					if (err) {
 						callback(err);
 					}
-					else if(!user){
-						callback("用户名或密码错误！");
+					else if(user.length<1){
+						callback("密码输入有误！");
 					} else {
-						callback(null, user);
+						callback(null, user[0]);
 					}
 				});
 			},
 			function (user, callback) {
 				// 2 score for login
-				var id=user[0]._id;
-				Customer.modifyScore(id, 2, function (err) {
+				Customer.modifyScore(user._id, 2, function (err) {
 					err ? callback(err) : callback(null, user);
 				});
 			},
 			function (user, callback) {
-				var id=user[0]._id;
-				Customer.upLogDate(id, function (err) {
+				Customer.upLogDate(user._id, function (err) {
 					err ? callback(err) : callback(null, user);
 				});
 			}
 			], function (err, result){
 				if(err) {
-			    	return res.stastus(500).jsonp({error: err});
+			    	return res.jsonp({error: err});
 				}
 				return res.jsonp(result);
 			})
