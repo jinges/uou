@@ -4,7 +4,7 @@ var Customer = require('../models/customer_model');
 var unit = require('../unit/index');
 
 var customerCtr = {
-	signUp: function (req, res){
+	signUp: function (req, res){ //注册
 		var  userName = req.param('username')
 			,passWord = req.param('password');
 
@@ -21,7 +21,7 @@ var customerCtr = {
 			return res.jsonp(obj);
 		});
 	},
-	checkMember: function (req, res) {
+	checkMember: function (req, res) { //验证用户是否已存在
 		var  userName = req.param('username');
 
 		Customer.find({'userName': userName}, function (err, user) {
@@ -36,18 +36,18 @@ var customerCtr = {
 			return res.jsonp({status: 1});
 		})
 	},
-	signIn: function (req, res){
+	signIn: function (req, res){// 登录
 		var  userName = req.param('username')
 			,passWord = req.param('password');
 
-		var query={
+		var criterion={
 			'userName': userName, 
 			'passWord': unit.setPassword( passWord )
 		}
 
 		async.waterfall([
 			function (callback) {
-				Customer.find(query, function (err, user) {
+				Customer.find(criterion, function (err, user) {
 					if (err) {
 						callback(err);
 					}
@@ -76,6 +76,27 @@ var customerCtr = {
 				return res.jsonp(result);
 			})
 	},
+	/****************** 后台 ************************/
+	selCustomers : function (req, res) { //会员列表
+		var criterion = req.param('params');
+
+		Customer.find(criterion, function (err, obj) {
+			if(err){
+				return res.json({ error: err })
+			}
+			return res.json(obj);
+		})
+	},
+	delCustomer: function (req, res) {  //删除用户(暂时还有问题)
+		var criterion = req.param('params');
+
+		Customer.delete(criterion, function (err) {
+			if(err){
+				return res.json({ error: err })
+			}
+			return res.json({'success': '删除成功！'});
+		})
+	}
 }
 
 module.exports=customerCtr;
