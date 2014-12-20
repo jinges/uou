@@ -17,4 +17,10 @@ $(function (){
 			var username=localStorage.userName;
 		}
 	})();
+
+	$(".text").on('focus', function (){
+		$(this).removeClass('error').next().css('display','inline-block');
+	}).on('blur', function () {
+		$(this).next().removeAttr('style');
+	})
 })
