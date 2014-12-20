@@ -3,30 +3,23 @@ var mongoose=require('mongoose');
 var Schema = mongoose.Schema;
 
 var loginRecordSchema = new Schema({
-	sid: String,
+	_id: Schema.Types.ObjectId,
+	sid: Schema.Types.ObjectId,
 	ip: String,
-	Date : {
-		type : Date(),
-		default : Date.now
-	}
+	dateTime : Date
 });
 
-var LoginRecordModel = mongoose.model('LoginRecord', LoginRecordSchema);
+var LoginRecordModel = mongoose.model('LoginRecord', loginRecordSchema);
 
 var LoginRecordObj  = {
 	save: function (obj, callback){
-		var LoginRecord= new LoginRecordModel(obj);
+		var LoginRecord = new LoginRecordModel(obj); 
 		LoginRecord.save(function (err, obj){
 			callback(err, obj);
 		});
 	},
-	findAll: function(query, callback){
-		LoginRecordModel.find(query, function (err, loginRecord){
-			callback(err, loginRecord);
-		});
-	},
-	findOne: function(query, callback){
-		LoginRecordModel.findOne(query, function (err, loginRecord){
+	findOne: function(criterion, callback){
+		LoginRecordModel.findOne(criterion, function (err, loginRecord){
 			callback(err, loginRecord);
 		});
 	}
