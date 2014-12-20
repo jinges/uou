@@ -4,32 +4,62 @@ var Merchant = require('../models/merchant_model');
 var unit = require('../unit/index');
 
 var merchantCtr={ 
-	init: function (req, res){
-	   unit.init(req, res, 'login', '登录');
+	initSignUp: function (req, res) {
+		unit.init(req, res, 'sign_up', '注册页面');
 	},
-	login: function (req, res){
-		var userName=req.body.userName;
-		var passWord= req.body.userPassWord;
-		var rememberUser = req.body.rememberUser;
+	signUp: function (req, res) {
+		var  userName = req.param['userName']
+			,passWord = req.param['passWord']
+			,name = req.param['name']
+			,phone = req.param['phone'];
 
-		passWord= unit.setPassword( passWord )
-		var query={'userName': userName, 'passWord': passWord};
+		var merchant = {
+			_id: unit.createId(),
+			name: name,
+			userName: userName,
+			passWord: unit.setPassword(passWord),	
+			phone: phone
+		}
+
+		Merchant.save(merchant, function (err, obj) {
+			if(err){
+				res.flash('error', err);
+				return;
+			}
+			req.redirect('/sign_in');
+		});
+	},
+	initSignIn: function (req, res){
+	   unit.init(req, res, 'sign_in', '登录');
+	},
+	signIn: function (req, res){
+		var  userName = req.param['userName']
+			,passWord = req.param['passWord'];
+
+		var query={'userName': userName, 'passWord': unit.setPassword( passWord )};
 		async.waterfall([
 			function (callback) {
-				Merchant.findOne(query, function (err, user) {
+				Merchant.findOne(query, function (err, merchant) {
 					if (err) {
 						callback(err);
 					}
-					else if(!user){
+					else if(!merchant){
 						callback("用户名或密码错误！");
 					} else {
-						callback(null, user);
+						callback(null, merchant[0]);
 					}
 				});
 			},
-			function (user, callback) {
-				Merchant.upLogDate(user._id, function (err) {
-					err ? callback(err) : callback(null, user);
+			function (merchant, callback) {
+				var obj = {
+					_id: unit.createId(),
+					sid: merchant._id,
+					ip: req.ip,
+					dateTime: new Date()
+				}
+				
+				loginRecord.save(obj, function (err) {
+					err ? callback(err) : callback(null, merchant);
 				});
 			}
 			], function (err, result){
@@ -38,16 +68,11 @@ var merchantCtr={
 					return res.redirect("/");
 				}
 
-				if( rememberUser ){
-					result.rememberUser=true;
-				}
-
-				result.score+=1;
 				req.session.user=result;
 	 			return res.redirect('/admin/index');
 			})
 	},
-	users: function (req, res){
+	selMerchant: function (req, res){
 		Merchant.findAll({}, function (err, users){
 			res.render('/admin/users', {
 				title: '管理员',
