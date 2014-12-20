@@ -29,8 +29,8 @@ var CustomerObj = {
 			callback(err, obj);
 		});
 	},
-	delete: function (id, callback) {
-		CustomerModel.remove({_id: id}, function (err) {
+	delete: function (criterion, callback) {
+		CustomerModel.remove(criterion, function (err) {
 			callback(err);
 		});
 	},
@@ -39,8 +39,8 @@ var CustomerObj = {
 			callback(err);
 		}); 
 	},
-	find: function (query, callback) {
-		CustomerModel.find(query, function (err, customers) {
+	find: function (criterion, callback) {
+		CustomerModel.find(criterion, function (err, customers) {
 			callback(err, customers);
 		});
 	},
