@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var unit = require('../unit/index');
 var customerCtr = require('../controlls/customer_controller');
 
 
