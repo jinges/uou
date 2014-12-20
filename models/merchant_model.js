@@ -3,32 +3,28 @@ var mongoose=require('mongoose');
 var Schema = mongoose.Schema;
 
 var MerchantSchema = new Schema({
-	name : String,
+	_id:Schema.Types.ObjectId,
+	realName : String,
+	companyName: String,
 	userName : String,
 	passWord : String, 
-	shopName: String, 
+	phone: Number,
+	email: String,
 	addr: String,
-	phoneNum: Number,
-	regDate : Date,
-	logDate:[Date]
+	regDate : Date
 });
 
 var MerchantModel = mongoose.model('Merchant', MerchantSchema);
 
 var MerchantObj  = {
 	save: function (obj, callback){
-		var Merchant= new MerchantModel(obj);
+		var Merchant = new MerchantModel(obj);
 		Merchant.save(function (err, obj){
 			callback(err, obj);
 		});
 	},
-	delete: function(id, callback){
-		MerchantModel.remove({_id: id}, function (err){
-			callback(err);
-		});
-	},
-	batchDelete: function(arrId, callback){
-		MerchantModel.remove({_id: {"$in": arrId}}, function (err){
+	delete: function(criterion, callback){
+		MerchantModel.remove(criterion, function (err){
 			callback(err);
 		});
 	},
@@ -37,20 +33,10 @@ var MerchantObj  = {
 			callback(err);
 		});
 	},
-	batchUpdate: function(arrMerchant, callback){
-		MerchantModel.update({_id: { "$in": arrMerchant }}, arrMerchant, function (err){
-			callback(err);
-		});
-	},
-	find: function(query, callback){
-		MerchantModel.find(query, function (err, merchants){
+	find: function(criterion, callback){
+		MerchantModel.find(criterion, function (err, merchants){
 			callback(err, merchants);
 		});
-	},
-	upLogDate: function (id, callback){
-		MerchantModel.update({"_id": id}, {"$push": {"logDate": new Date()}}, function ( err ){
-			callback(err);
-		})
 	}
 }
 
