@@ -3,9 +3,10 @@ var Schema = mongoose.Schema;
 
 var CustomerSchema = new Schema({
 	_id:Schema.Types.ObjectId,
+	mid: Schema.Types.ObjectId,
+	name: String,
 	userName: String,
 	passWord: String,
-	name: String,
 	gender: Number,
 	photo : String,
 	birthDay:String,
@@ -14,15 +15,13 @@ var CustomerSchema = new Schema({
 		default:10, 
 		min:10
 	},
-	regDate : Date,
-	logDate:[Date]
+	regDate : Date
 });
 
 var CustomerModel = mongoose.model('Customer', CustomerSchema);
 
 var CustomerObj = {
 	save: function (obj, callback){
-		obj._id=new mongoose.Types.ObjectId;
 		var Customer = new CustomerModel(obj);
 	
 		Customer.save(function (err, obj) {
@@ -48,11 +47,6 @@ var CustomerObj = {
 		CustomerModel.update({"_id": id}, {"$inc": {"score": score}}, function (err) {
 			callback(err);
 		});
-	},
-	upLogDate: function (id, callback){
-		CustomerModel.update({"_id": id}, {"$push": {"logDate": new Date()}}, function ( err ){
-			callback(err);
-		})
 	}
 }
 
