@@ -1,5 +1,6 @@
 
 var crypto=require('crypto');
+var mongoose=require('mongoose');
 
 //公共方法
 module.exports={
@@ -32,5 +33,8 @@ module.exports={
  			res.redirect('/user');
  		}
  		next();
+ 	},
+ 	createId: function () {
+ 		return new mongoose.Types.ObjectId;	
  	}
 }
