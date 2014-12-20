@@ -1,19 +1,23 @@
 var  async = require('async');
 
 var Customer = require('../models/customer_model');
+var loginRecord = require('../models/loginRecord_model');
 var unit = require('../unit/index');
 
 var customerCtr = {
 	signUp: function (req, res){ //注册
 		var  userName = req.param('username')
-			,passWord = req.param('password');
+			,passWord = req.param('password')
+			,mid = req.param['mid'];
 
 		var customer = {
+			_id: unit.createId(),
+			mid: mid,
 			userName: userName,
 			passWord: unit.setPassword( passWord ),
 			regDate: new Date()
 		}
-		
+		console.log(customer);
 		Customer.save(customer, function (err, obj){
 			if(err){
 			    return res.status(500).jsonp({error: err});
@@ -65,7 +69,14 @@ var customerCtr = {
 				});
 			},
 			function (user, callback) {
-				Customer.upLogDate(user._id, function (err) {
+				var obj = {
+					_id: unit.createId(),
+					sid: user._id,
+					ip: req.ip,
+					dateTime: new Date()
+				}
+				
+				loginRecord.save(obj, function (err) {
 					err ? callback(err) : callback(null, user);
 				});
 			}
