@@ -1,0 +1,89 @@
+<% include layout/header.html %>
+<article class="sign_up">
+	<form class="form-horizontal" method="post" role="form">
+		<h4>账户信息</h4>
+		<div class="form-group">
+			<label for="signupName" class="col-sm-3 control-label">登录名称</label>
+			<div class="col-sm-9">
+				<input type="text" class="text" id="signupName" name="signupName" placeholder="登录名称"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="PassWord" class="col-sm-3 control-label">设置密码</label>
+			<div class="col-sm-9">
+				<input type="password" class="text" id="PassWord" name="PassWord" placeholder="密码" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="rePassWord" class="col-sm-3 control-label">确认密码</label>
+			<div class="col-sm-9">
+				<input type="password" class="text" id="rePassWord" name="rePassWord" placeholder="确认密码" />
+			</div>
+		</div>
+		<h4>联系人</h4>
+		<div class="form-group">
+			<label for="realName" class="col-sm-3 control-label">联系人姓名</label>
+			<div class="col-sm-9">
+				<input type="text" class="text" id="realName" name="realName" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="phone" class="col-sm-3 control-label">验证手机</label>
+			<div class="col-sm-9">
+				<input type="text" class="text" id="phone" name="phone" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email" class="col-sm-3 control-label">联系人邮箱</label>
+			<div class="col-sm-9">
+				<input type="text" class="text" id="email" name="email"/>
+			</div>
+		</div>
+		<h4>公司信息</h4>
+		<div class="form-group">
+			<label for="companyName" class="col-sm-3 control-label">公司名称</label>
+			<div class="col-sm-9">
+				<input type="text" class="text" id="companyName" name="companyName"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputPassWord" class="col-sm-3 control-label">公司所在地</label>
+			<div class="col-sm-9">
+				<select class="clo-sm-3">
+					  <option>1</option>
+					  <option>2</option>
+					  <option>3</option>
+					  <option>4</option>
+					  <option>5</option>
+					</select>
+				<select class="clo-sm-3">
+					  <option>1</option>
+					  <option>2</option>
+					  <option>3</option>
+					  <option>4</option>
+					  <option>5</option>
+					</select>
+				<select class="clo-sm-3">
+					  <option>1</option>
+					  <option>2</option>
+					  <option>3</option>
+					  <option>4</option>
+					  <option>5</option>
+					</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="addr" class="col-sm-3 control-label">公司地址</label>
+			<div class="col-sm-9">
+				<input type="text" class="text" id="addr" name="addr"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-3 col-sm-9">
+				<button type="submit" id="signUpLogin" class="btn btn-default">登录</button>
+			</div>
+		</div>
+	</form>
+</article >
+
+<% include layout/footer.html %> 
