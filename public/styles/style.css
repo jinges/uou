@@ -1,0 +1,63 @@
+/*
+	Date: 2014-12-20
+	Author: 冯亮;
+*/
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+label{
+	font-weight: normal;
+	color: #999;
+}
+.text{
+	padding: 10px;
+	height: 40px;
+	width: 270px;
+	border:1px solid #ccc;
+}
+.text:focus{
+	-webkit-box-shadow: 0 0 #00940D;
+	box-shadow: 0 0 #00940D;
+	border-color: #00940D;
+}
+.text.error{
+	border-color: #f00;
+}
+.sign_up{
+	width: 80%;
+	margin: auto;
+}
+.sign_in{
+	width: 340px;
+	float: right;
+	padding: 20px;
+	margin: 200px  200px 0 0;
+	border:1px solid #ccc;
+}
+.sign_in .col-sm-3,.sign_in .col-sm-9{
+	padding: 0 10px;
+}
+.alert{
+	padding: 5px 30px 5px 5px;
+	position: absolute;
+	margin: 0;
+}
+.prompt{
+	width: 400px;
+	height: 40px;
+	line-height: 40px;
+	vertical-align: top;
+	color: #999;
+	border:1px solid #ccc;
+	display: inline-block;
+	padding: 0 10px;
+	margin-left: 20px;
+
+}
+.prompt.error{
+	color: #f00;
+	border-color: #FFBDBE;
+	background: #FFEBEB;
+}
