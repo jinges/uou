@@ -29,7 +29,7 @@ var MerchantObj  = {
 		});
 	},
 	update: function(Merchant, callback){
-		MerchantModel.update({_id: Merchant._id}, Merchant, function (err){
+		MerchantModel.update({'_id': Merchant._id}, Merchant, function (err){
 			callback(err);
 		});
 	},

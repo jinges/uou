@@ -1,6 +1,7 @@
 
 var crypto=require('crypto');
 var mongoose=require('mongoose');
+var log = require('../controlls/log_controller');
 
 //公共方法
 module.exports={
@@ -36,5 +37,8 @@ module.exports={
  	},
  	createId: function () {
  		return new mongoose.Types.ObjectId;	
+ 	},
+ 	writeLog: function (uid, enumItem) {
+ 		log.writeLog(uid, enumItem);
  	}
 }
