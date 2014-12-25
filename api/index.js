@@ -8,7 +8,7 @@ var customerCtr = require('../controlls/customer_controller');
 //注册
 router.get('/signUp', customerCtr.signUp);
 //登录
-router.get('/signIn', customerCtr.signIn);
+router.get('/logIn', customerCtr.logIn);
 //验证用户是否存在
 router.get('/checkMember', customerCtr.checkMember);
 
