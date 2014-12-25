@@ -8,18 +8,9 @@ var merchantCtr={
 		unit.init(req, res, 'sign_up', '注册页面');
 	},
 	signUp: function (req, res) {
-		var  userName = req.param['userName']
-			,passWord = req.param['passWord']
-			,name = req.param['name']
-			,phone = req.param['phone'];
-
-		var merchant = {
-			_id: unit.createId(),
-			name: name,
-			userName: userName,
-			passWord: unit.setPassword(passWord),	
-			phone: phone
-		}
+		var merchant = req.body;
+		merchant._id = unit.createId();
+		merchant.passWord = unit.setPassword(passWord);
 
 		Merchant.save(merchant, function (err, obj) {
 			if(err){
@@ -29,21 +20,19 @@ var merchantCtr={
 			req.redirect('/sign_in');
 		});
 	},
-	initSignIn: function (req, res){
+	initLogIn: function (req, res){
 	   unit.init(req, res, 'sign_in', '登录');
 	},
-	signIn: function (req, res){
-		var  userName = req.param['userName']
-			,passWord = req.param['passWord'];
+	logIn: function (req, res){
+		var query = req.body;
+		query.passWord=unit.setPassword( passWord );
 
-		var query={'userName': userName, 'passWord': unit.setPassword( passWord )};
 		async.waterfall([
 			function (callback) {
 				Merchant.findOne(query, function (err, merchant) {
 					if (err) {
 						callback(err);
-					}
-					else if(!merchant){
+					} else if(!merchant){
 						callback("用户名或密码错误！");
 					} else {
 						callback(null, merchant[0]);

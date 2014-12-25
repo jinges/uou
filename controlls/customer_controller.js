@@ -17,10 +17,9 @@ var customerCtr = {
 			passWord: unit.setPassword( passWord ),
 			regDate: new Date()
 		}
-		console.log(customer);
 		Customer.save(customer, function (err, obj){
 			if(err){
-			    return res.status(500).jsonp({error: err});
+			    return res.jsonp({error: err});
 			}
 			return res.jsonp(obj);
 		});
@@ -30,7 +29,7 @@ var customerCtr = {
 
 		Customer.find({'userName': userName}, function (err, user) {
 			if(err){ 
-				return res.status(500).jsonp({error: err})
+			    return res.jsonp({error: err});
 			}
 
 			if(user.length<1){
@@ -40,7 +39,7 @@ var customerCtr = {
 			return res.jsonp({status: 1});
 		})
 	},
-	signIn: function (req, res){// 登录
+	logIn: function (req, res){// 登录
 		var  userName = req.param('username')
 			,passWord = req.param('password');
 

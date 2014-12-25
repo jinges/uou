@@ -3,11 +3,11 @@ var Schema = mongoose.Schema;
 
 var BlessingsSchema = new Schema({
 	id: Schema.Types.ObjectId,
-	SID: Schema.Types.ObjectId,
-	CID: Schema.Types.ObjectId,
+	Cid: Schema.Types.ObjectId,
+	title: String,
 	blessings: String,
-	publishTime: {type: Date, default: Date.now},
-	recipients:[Schema.Types.ObjectId]
+	style: [],
+	publishTime: {type: Date, default: Date.now}
 });
 
 var BlessingsModel = mongoose.model('Blessings', BlessingsSchema);
@@ -19,18 +19,18 @@ var BlessingsObj = {
 			callback(err, obj);
 		});
 	},
-	delete: function (id, callback) {
-		BlessingsModel.remove({id: id}, function (err){
+	delete: function (criterion, callback) {
+		BlessingsModel.remove(criterion, function (err){
 			callback(err);
 		});
 	}, 
 	update: function (Blessings, callback) {
-		BlessingsModel.update({id: Blessings.id},{'blessings', Blessings.blessings}, function (err) {
+		BlessingsModel.update({'_id': Blessings._id}, Blessings, function (err) {
 			callback(err);
 		});
 	},
-	find: function (id, callback) {
-		BlessingsModel.find({id: id}, function (err, blessings) {
+	find: function (criterion, callback) {
+		BlessingsModel.find(criterion, function (err, blessings) {
 			callback(err, blessings);
 		});
 	}
