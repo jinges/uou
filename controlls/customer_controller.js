@@ -6,17 +6,14 @@ var unit = require('../unit/index');
 
 var customerCtr = {
 	signUp: function (req, res){ //注册
-		var  userName = req.param('username')
-			,passWord = req.param('password')
-			,mid = req.param['mid'];
-
 		var customer = {
 			_id: unit.createId(),
-			mid: mid,
-			userName: userName,
-			passWord: unit.setPassword( passWord ),
+			mid: req.param['mid'],
+			userName: req.param('username'),
+			passWord: unit.setPassword( req.param('password') ),
 			regDate: new Date()
 		}
+
 		Customer.save(customer, function (err, obj){
 			if(err){
 			    return res.jsonp({error: err});
@@ -40,17 +37,14 @@ var customerCtr = {
 		})
 	},
 	logIn: function (req, res){// 登录
-		var  userName = req.param('username')
-			,passWord = req.param('password');
-
-		var criterion={
-			'userName': userName, 
-			'passWord': unit.setPassword( passWord )
+		var customer={
+			'userName': req.param('username'), 
+			'passWord': unit.setPassword( req.param('password') )
 		}
 
 		async.waterfall([
 			function (callback) {
-				Customer.find(criterion, function (err, user) {
+				Customer.find(customer, function (err, user) {
 					if (err) {
 						callback(err);
 					}
@@ -83,6 +77,10 @@ var customerCtr = {
 				if(err) {
 			    	return res.jsonp({error: err});
 				}
+
+				Customer.modifyScore(result._id, 2, function (err) {
+					//暂无处理
+				});
 				return res.jsonp(result);
 			})
 	},
