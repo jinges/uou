@@ -2,11 +2,12 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var BlessingsSchema = new Schema({
-	id: Schema.Types.ObjectId,
-	Cid: Schema.Types.ObjectId,
+	_id: Schema.Types.ObjectId,
+	Uid: Schema.Types.ObjectId,
 	title: String,
 	blessings: String,
 	style: [],
+	views: Number,
 	publishTime: {type: Date, default: Date.now}
 });
 
@@ -32,6 +33,11 @@ var BlessingsObj = {
 	find: function (criterion, callback) {
 		BlessingsModel.find(criterion, function (err, blessings) {
 			callback(err, blessings);
+		});
+	},
+	modifyViews: function (id, callback){
+		CustomerModel.update({"_id": id}, {"$inc": {"score": 1}}, function (err) {
+			callback(err);
 		});
 	}
 }
