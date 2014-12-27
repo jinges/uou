@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var LogSchema = new Schema({
-	id: Schema.Types.ObjectId,
+	_id: Schema.Types.ObjectId,
 	Uid: Schema.Types.ObjectId,
 	action: Number,
 	createTime: {type: Date, default: Date.now}
