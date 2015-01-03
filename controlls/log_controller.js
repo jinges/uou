@@ -1,4 +1,5 @@
 var Log = require('../models/log_model');
+var unit = require('../unit/index');
 
 var LogCtr = {
 	enums: [
@@ -7,6 +8,7 @@ var LogCtr = {
 	],
 	writeLog: function (uid, enumsItem) {
 		var log = {
+			_id: unit.createId();
 			Uid: uid,
 			action: enumsItem,
 			createTime: new Date()
@@ -26,19 +28,19 @@ var LogCtr = {
 			}
 
 			var logArry = {},
-				cid = 0,
+				uid = 0,
 				j = 0,
 				logEnums = LogCtr.enums;
 
 			for(var i=0; i< obj.length; i++){
 				var userId=obj[i].Uid;
-				if(cid != userId){
+				if(uid != userId){
 					j++;
-					logArry[j].Cid = userId
+					logArry[j].uid = userId
 				}
 				logArry[j].log.push({'content': logEnums[obj[i].action], 'Date': obj[i].createTime});
 
-				cid = userId;
+				uid = userId;
 			}
 			return logArry;
 		})
