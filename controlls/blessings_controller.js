@@ -31,9 +31,7 @@ var BlessingsCtr = {
 			if(err){
 			    return res.jsonp({error: err});
 			}
-			modifyViews(obj._id, function (err) {
-				//暂无处理
-			});
+			Blessings.modifyViews(obj._id);
 			return res.jsonp(obj);
 		});
 	},
