@@ -10,6 +10,8 @@ var CustomerSchema = new Schema({
 	gender: Number,
 	photo : String,
 	birthDay:String,
+	lock: Boolean,
+	wallet: Number,
 	score: {
 		type: Number, 
 		default:10, 
