@@ -76,7 +76,7 @@ var customerCtr = {
 			], function (err, result){
 				if(err) {
 			    	return res.jsonp({error: err});
-				}
+				} 
 
 				Customer.modifyScore(result._id, 2, function (err) {
 					//暂无处理
