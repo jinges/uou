@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var loginRecordSchema = new Schema({
 	_id: Schema.Types.ObjectId,
-	sid: Schema.Types.ObjectId,
+	Uid: Schema.Types.ObjectId,
 	ip: String,
 	dateTime : Date
 });
