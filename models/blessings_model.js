@@ -6,7 +6,7 @@ var BlessingsSchema = new Schema({
 	Uid: Schema.Types.ObjectId,
 	title: String,
 	blessings: String,
-	style: [],
+	style: Array,
 	views: Number,
 	publishTime: {type: Date, default: Date.now}
 });
@@ -35,9 +35,11 @@ var BlessingsObj = {
 			callback(err, blessings);
 		});
 	},
-	modifyViews: function (id, callback){
+	modifyViews: function (id){
 		CustomerModel.update({"_id": id}, {"$inc": {"score": 1}}, function (err) {
-			callback(err);
+			
 		});
 	}
 }
+
+module.exports = BlessingsObj;
