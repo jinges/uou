@@ -8,7 +8,7 @@ var customerCtr = {
 	signUp: function (req, res){ //注册
 		var customer = {
 			_id: unit.createId(),
-			mid: req.param['mid'],
+			mid: req.param('mid'),
 			userName: req.param('username'),
 			passWord: unit.setPassword( req.param('password') ),
 			regDate: new Date()
