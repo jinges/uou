@@ -4,12 +4,12 @@ var Schema = mongoose.Schema;
 
 var MerchantSchema = new Schema({
 	_id:Schema.Types.ObjectId,
-	realName : String,
-	companyName: String,
-	userName : String,
+	name : String,
 	passWord : String, 
-	phone: Number,
+	realName : String,
+	phone: String,
 	email: String,
+	companyName: String,
 	addr: String,
 	regDate : Date
 });
