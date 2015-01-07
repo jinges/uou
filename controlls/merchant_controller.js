@@ -1,35 +1,38 @@
 var async =  require('async');
 
 var Merchant = require('../models/merchant_model');
+var loginRecord = require('../models/loginRecord_model');
 var unit = require('../unit/index');
 
 var merchantCtr={ 
 	initSignUp: function (req, res) {
-		unit.init(req, res, 'sign_up', '注册页面');
+		unit.init(req, res, 'signup', '注册页面');
 	},
 	signUp: function (req, res) {
 		var merchant = req.body;
 		merchant._id = unit.createId();
-		merchant.passWord = unit.setPassword(passWord);
+		merchant.passWord = unit.setPassword(merchant.passWord);
+		merchant.regDate = new Date();
 
+		delete merchant.rePassWord;
 		Merchant.save(merchant, function (err, obj) {
 			if(err){
 				res.flash('error', err);
 				return;
 			}
-			req.redirect('/sign_in');
+			res.redirect('/login');
 		});
 	},
 	initLogIn: function (req, res){
-	   unit.init(req, res, 'sign_in', '登录');
+	   unit.init(req, res, 'login', '登录');
 	},
 	logIn: function (req, res){
-		var query = req.body;
-		query.passWord=unit.setPassword( passWord );
+		var merchant = req.body;
+		merchant.passWord=unit.setPassword( merchant.passWord );
 
 		async.waterfall([
 			function (callback) {
-				Merchant.findOne(query, function (err, merchant) {
+				Merchant.find(merchant, function (err, merchant) {
 					if (err) {
 						callback(err);
 					} else if(!merchant){
@@ -46,7 +49,6 @@ var merchantCtr={
 					ip: req.ip,
 					dateTime: new Date()
 				}
-				
 				loginRecord.save(obj, function (err) {
 					err ? callback(err) : callback(null, merchant);
 				});
@@ -58,7 +60,7 @@ var merchantCtr={
 				}
 
 				req.session.user=result;
-	 			return res.redirect('/admin/index');
+	 			return res.redirect('/');
 			})
 	},
 	selMerchant: function (req, res){
