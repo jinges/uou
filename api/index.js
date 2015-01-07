@@ -14,10 +14,10 @@ router.get('/logIn', customerCtr.logIn);
 router.get('/checkMember', customerCtr.checkMember);
 
 //创建贺卡
-router.get('/createBlessings', blessingsCtr.createBlessings);
+router.get('/blessings/create', blessingsCtr.createBlessings);
 //阅览贺卡
 router.get('/blessings', blessingsCtr.findBlessings);
 //更新uid
-route.get('/updateUid', blessingsCtr.updateUid);
+router.get('/updateUid', blessingsCtr.updateUid);
 
 module.exports = router;
