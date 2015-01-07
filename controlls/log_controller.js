@@ -3,12 +3,12 @@ var unit = require('../unit/index');
 
 var LogCtr = {
 	enums: [
-		'创建祝福语',  //  '0'
+		'创建祝福语 ',  //  '0'
 		'删除祝福语'  //  '1'
 	],
 	writeLog: function (uid, enumsItem) {
 		var log = {
-			_id: unit.createId();
+			_id: unit.createId(),
 			Uid: uid,
 			action: enumsItem,
 			createTime: new Date()

@@ -15,5 +15,8 @@ var ScoreCtr = {
 				return err;
 			}
 		});
+	},
+	readScore: function (req, res) {
+		
 	}
 } 

@@ -14,8 +14,8 @@ var ScoreModel = mongoose.model('Score', ScoreSchema);
 var ScoreObj = {
 	save: function (obj, callback) {
 		var Score = new ScoreModel(obj);
-		Score.save(function (err, obj) {
-			callback(err, obj);
+		Score.save(function (err) {
+			callback(err);
 		});
 	},
 	find: function (criterion, callback) {
