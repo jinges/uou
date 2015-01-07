@@ -1,13 +1,12 @@
 var  async = require('async');
 
-var Customer = require('../models/customer_model');
 var Blessing = require('../models/blessings_model');
 var unit = require('../unit/index');
 
 var BlessingsCtr = {
 	createBlessings: function (req, res) {
 		var blessings = {
-				_id: unit.createId();
+				_id: unit.createId(),
 				Uid: req.param('cid'),
 				title: req.param('title'),
 				blessings: req.param('blessings'),
@@ -22,10 +21,10 @@ var BlessingsCtr = {
 			unit.writeLog(uid, 1);
 			return res.jsonp(obj);
 		});
-	},
-	findBlessings: function (req, res) {
+	}
+	,findBlessings: function (req, res) {
 		var criterion = {
-				_id: unit.createId();
+				_id: req.param("id")
 			}
 		Blessings.find(criterion, function (err, obj) {
 			if(err){
@@ -34,10 +33,10 @@ var BlessingsCtr = {
 			Blessings.modifyViews(obj._id);
 			return res.jsonp(obj);
 		});
-	},
-	updateBlessings: function (req, res){  // 
+	}
+	,updateBlessings: function (req, res){  // 
 		var blessings = {
-				_id: unit.createId();
+				_id: req.param("_id"),
 				Uid: req.param('cid'),
 				title: req.param('title'),
 				blessings: req.param('blessings'),
@@ -50,10 +49,10 @@ var BlessingsCtr = {
 				}
 				return res.jsonp({'success': 'success'});
 			});
-	}，
-	updateUid: function (req, res) {
+	}
+	,updateUid: function (req, res) {
 		var blessings = {
-			_id: unit.createId();
+			_id: req.param("_id"),
 			Uid: req.param('cid'),
 		}
 		Blessings.update(blessings, function (err) {
@@ -62,9 +61,9 @@ var BlessingsCtr = {
 			}
 			return res.jsonp({'success': 'success'});
 		});
-	}，
+	}
 	/***************后台*******************/
-	selBlessings: function (req, res) {
+	,selBlessings: function (req, res) {
 		var criterion = req.param("params");
 
 		Blessings.find(criterion, function (err, obj) {
@@ -74,4 +73,6 @@ var BlessingsCtr = {
 			return res.jsonp(obj);
 		});
 	}
-}
+ }
+
+ module.exports = BlessingsCtr;
