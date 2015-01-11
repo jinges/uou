@@ -36,10 +36,10 @@ $("#name").on('focus', function () {
 		//验证是否存在
 	}
 })
-$("#main-nav li a.nav-top-item").click( // When a top menu item is clicked...
+
+$("#main-nav li a.nav-top-item").click(
 			function () {
-			    $(this).parent().siblings().find("ul").slideUp("slow"); // Slide up all sub menus except the one clicked
-			    $(this).next().slideToggle("slow"); // Slide down the clicked sub menu
+			    $(this).next().slideToggle("slow").parent().siblings().find("ul").slideUp("slow");
 			    return false;
 			}
 		); 

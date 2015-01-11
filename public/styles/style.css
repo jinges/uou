@@ -58,7 +58,7 @@ header#top {
     background-color: #282828;
     width:100%;
     height: 55px;
-    background: url("../images/bg-login.gif") repeat-x scroll left top transparent;
+    background: url("../images/bg-login.jpg") repeat scroll left top transparent;
     display: block;
     padding-top:10px;
     margin-bottom: 10px;
@@ -165,7 +165,7 @@ a#totop:hover, a#totop:focus, a#totop:active{
                 background: #EAEAEA ;
                 }
 #sidebar #main-nav li a.nav-top-item .glyphicon{
-                padding:0 15px 0 5px;
+                padding:0 10px 0 5px;
                 }
 
 #sidebar #main-nav>li>a.current {
@@ -200,15 +200,8 @@ a#totop:hover, a#totop:focus, a#totop:active{
                 color: #26a9e0;
                 }
 
-#sidebar #main-nav ul li a.nav-item{
-                font-size: 15px;
-                background: transparent url('../images/menu-current-arrow2.gif') 15px center no-repeat !important;
-                }
-#sidebar #main-nav ul li a.nav-item.current {
-                background: transparent url('../images/menu-current-arrow.gif') 15px center no-repeat !important;
-                }
 #sidebar #main-nav ul li ul a {
-                padding: 8px 15px 8px 43px;
+                padding: 8px 15px 8px 70px;
                 }
 /***************  content  *******************/
 .content{

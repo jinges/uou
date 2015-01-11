@@ -10,6 +10,7 @@ var CustomerCtr = {
 		var customer = {
 			_id: unit.createId(),
 			mid: req.param('mid'),
+			name: req.param('name'),
 			userName: req.param('username'),
 			passWord: unit.setPassword( req.param('password') ),
 			regDate: new Date()
