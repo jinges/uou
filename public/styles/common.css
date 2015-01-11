@@ -1,0 +1,26 @@
+/*
+	fengliang
+	2015/01/10
+*/
+.alert{
+	padding: 5px 30px 5px 5px;
+	position: absolute;
+	margin: 0;
+}
+.prompt{
+	width: 400px;
+	height: 40px;
+	line-height: 40px;
+	vertical-align: top;
+	color: #999;
+	border:1px solid #ccc;
+	display: inline-block;
+	padding: 0 10px;
+	margin-left: 20px;
+
+}
+.prompt.error{
+	color: #f00;
+	border-color: #FFBDBE;
+	background: #FFEBEB;
+}

@@ -35,8 +35,8 @@ var CustomerObj = {
 			callback(err);
 		});
 	},
-	update: function (Customer, callback) {
-		CustomerModel.update({'_id': Customer._id}, Customer, function (err) {
+	update: function (criterion,customer, callback) {
+		CustomerModel.update( criterion, customer, function (err) {
 			callback(err);
 		}); 
 	},

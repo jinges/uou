@@ -1,33 +1,46 @@
-<% include layout/header.html %>
-<article class="sign_in">
-	<form class="form-horizontal" method="post" role="form">
-		<div class="form-group">
-			<label for="loginName" class="col-sm-3 control-label">邮箱</label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" id="loginName" name="name" placeholder="邮箱/手机号码">
-			</div>
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<meta name='viewport',content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'/>
+	<Meta http-equiv="Page-exit" Content="revealTrans(duration=10, transition=16)" /> 
+	<link rel="stylesheet"  href="/assets/bootstrap-3.2.0/css/bootstrap.css"/>
+	<link rel="stylesheet"  href="/styles/common.css" />
+	<link rel="stylesheet"  href="/styles/style.css" />
+</head>
+<body>
+  	<% if(success) { %>
+		<div class="alert alert-success alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<%= success %>
 		</div>
-		<div class="form-group">
-			<label for="loginPassWord" class="col-sm-3 control-label">密码</label>
-			<div class="col-sm-9">
-				<input type="password" class="form-control" id="loginPassWord" name="passWord" placeholder="密码">
-			</div>
+	<% } %>
+	<% if(error) { %>
+		<div class="alert alert-danger alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<%= error %>
 		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-3 col-sm-9">
-				<div class="checkbox">
-					<label>
-						<input id="rememberUser" name="rememberUser" type="checkbox">记住密码
-					</label>
-				</div>
+	<% } %>
+	<article class="login">
+		<form class="login-form" method="post">
+			<a href="###" class="formLogo"><img src="images/logo.png"></a>
+			<div class="form-group">
+				<input type="text" id="loginName" name="name" class="form-control" placeholder="登录名/电话/邮箱">
 			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-3 col-sm-9">
-				<button type="submit" id="loginBtn" class="btn btn-default">登录</button>
+			<div class="form-group">
+				<input type="password" id="loginPassWord" name="passWord"  class="form-control" placeholder="密码">
 			</div>
-		</div>
-	</form>
-</article >
-
-<% include layout/footer.html %> 
+			<div class="form-group">
+				<button type="submit" class="btn btn-success col-xs-12">登录</button>
+			</div>
+			<div class="form-group">
+				<a class="forgetpwd" href="#">● 忘记密码？</a>
+			</div>
+		</form>
+		<p class="copyright">© jinges.com</p>
+	</article>
+	<script type="text/javascript" src="/assets/jquery-2.1.1/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="/assets/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/javascripts/common.js"></script>
+</body>
+</html>

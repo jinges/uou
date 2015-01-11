@@ -2515,8 +2515,8 @@ select[multiple].input-sm {
   border-radius: 6px;
 }
 select.input-lg {
-  height: 46px;
-  line-height: 46px;
+  height: 40px;
+  line-height: 40px;
 }
 textarea.input-lg,
 select[multiple].input-lg {
@@ -6200,4 +6200,3 @@ button.close {
     display: none !important;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */

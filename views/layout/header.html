@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
+<head>
+	<title><%= title %></title>
 	<meta name='viewport',content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'/>
 	<Meta http-equiv="Page-exit" Content="revealTrans(duration=10, transition=16)" /> 
-	<link rel="stylesheet" type="text/css" href="/assets/bootstrap-3.2.0/css/bootstrap.css"/>
-	<link rel="stylesheet" type="text/css" href="/styles/style.css" />
-  </head>
-  <body>
-  	<% if(success) { %>
-		<div class="alert alert-success alert-dismissable">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<%= success %>
+	<link rel="stylesheet"  href="/assets/bootstrap-3.2.0/css/bootstrap.css"/>
+	<link rel="stylesheet"  href="/styles/common.css" />
+	<link rel="stylesheet"  href="/styles/style.css" />
+</head>
+<body>
+	<!-- Header -->
+	<header id="top">
+		<h1 class="webtitle"><img src="/images/logo.png"></h1>
+		<div class="wrapper">
+			<% if(user) { %>
+			<img src="/images/admin.png"> 
+			<span class="admin"><%= user.companyName %></span>
+			<a href="#">登出</a>
+			<% } else { %>
+			<a href="#">登录</a>
+			<% } %>
 		</div>
+	</header>
+	<!-- End of Header -->
+	<div class="main">
+		
+	<% if(success) { %>
+	<div class="alert alert-success alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<%= success %>
+	</div>
 	<% } %>
 	<% if(error) { %>
-		<div class="alert alert-danger alert-dismissable">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<%= error %>
-		</div>
+	<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<%= error %>
+	</div>
 	<% } %>
+	<% include /side_menu.html %> 

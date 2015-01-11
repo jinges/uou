@@ -24,19 +24,28 @@ var merchantCtr={
 		});
 	},
 	initLogIn: function (req, res){
-	   unit.init(req, res, 'login', '登录');
+	    unit.init(req, res, 'login', '登录');
 	},
 	logIn: function (req, res){
-		var merchant = req.body;
-		merchant.passWord=unit.setPassword( merchant.passWord );
+		var params = req.body,
+			criterion = {};
+
+		criterion = {
+			"$or": [
+				{'name': params.name},
+				{'phone': params.name},
+				{'email': params.name}]
+			,
+			passWord: unit.setPassword( params.passWord )
+		}
 
 		async.waterfall([
 			function (callback) {
-				Merchant.find(merchant, function (err, merchant) {
+				Merchant.find(criterion, function (err, merchant) {
 					if (err) {
-						callback(err);
-					} else if(!merchant){
-						callback("用户名或密码错误！");
+						return callback(err);
+					} else if(merchant.length<1){
+						return callback("您的密码有误！");
 					} else {
 						callback(null, merchant[0]);
 					}
@@ -50,17 +59,22 @@ var merchantCtr={
 					dateTime: new Date()
 				}
 				loginRecord.save(obj, function (err) {
-					err ? callback(err) : callback(null, merchant);
+					if (err){
+						return callback(err) 
+					} else{
+						callback(null, merchant);
+					} 
 				});
 			}
 			], function (err, result){
+				console.log(result)
 				if(err) {
 				    req.flash('error', err);
-					return res.redirect("/");
+					return res.redirect("/signup");
 				}
 
 				req.session.user=result;
-	 			return res.redirect('/');
+	 			return res.redirect('/admin/index');
 			})
 	},
 	selMerchant: function (req, res){

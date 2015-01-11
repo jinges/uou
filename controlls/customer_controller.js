@@ -2,9 +2,10 @@ var  async = require('async');
 
 var Customer = require('../models/customer_model');
 var loginRecord = require('../models/loginRecord_model');
+var ScoreCtr = require('../controlls/score_controller');
 var unit = require('../unit/index');
 
-var customerCtr = {
+var CustomerCtr = {
 	signUp: function (req, res){ //注册
 		var customer = {
 			_id: unit.createId(),
@@ -79,15 +80,19 @@ var customerCtr = {
 				} 
 
 				Customer.modifyScore(result._id, 2, function (err) {
+					ScoreCtr.writeScore(result._id,'登录',2);
 					//暂无处理
 				});
 				return res.jsonp(result);
 			})
 	},
 	/****************** 后台 ************************/
+	initCustomer: function (req, res) {
+		unit.init(req, res, 'admin/customer', '会员管理');
+	},
 	selCustomers : function (req, res) { //会员列表
 		var criterion = req.param('params');
-
+		
 		Customer.find(criterion, function (err, obj) {
 			if(err){
 				return res.json({ error: err })
@@ -96,15 +101,27 @@ var customerCtr = {
 		})
 	},
 	delCustomer: function (req, res) {  //删除用户(暂时还有问题)
-		var criterion = req.param('params');
+		var Mid  = req.param('mid'),
+			arrId = req.param('arrId');
 
-		Customer.delete(criterion, function (err) {
+		//还有问题
+		Customer.delete(arrId, function (err) {
 			if(err){
 				return res.json({ error: err })
 			}
 			return res.json({'success': '删除成功！'});
 		})
+	},
+	lockCustomer: function (req, res) {  //开启 or 锁定用户
+		var arrId = req.param("id"),
+			isLock = req.param("locker");
+		CustomerCtr.update({'_id': {"$in": arrId}},{'$set': {'lock': isLock}},function(err){
+			if(err){
+				return res.json({'err': err});
+			}
+
+		});
 	}
 }
 
-module.exports=customerCtr;
+module.exports = CustomerCtr;

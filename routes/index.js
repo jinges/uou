@@ -3,8 +3,9 @@ var router = express.Router();
 
 var indexCtr = require('../controlls/index_controller');
 var merchantCtr = require('../controlls/merchant_controller');
+var customerCtr = require('../controlls/customer_controller');
 
-/* index */
+/* default */
 router.route('/')
 	.get(function (req, res){
 		res.redirect('/login');
@@ -15,9 +16,17 @@ router.route('/signup')
 	.get(merchantCtr.initSignUp)
 	.post(merchantCtr.signUp);
 
-/*  singIn   */
-router.route('/logIn')
+/*  logn In   */
+router.route('/login')
 	.get(merchantCtr.initLogIn)
 	.post(merchantCtr.logIn);
 
+/*    admin/index      */
+router.route('/admin/index')
+	.get(indexCtr.initPage);
+
+/*    admin/customer       */
+router.route('/admin/customer')
+	.get(customerCtr.initCustomer);
+router.get('/api/selCustomers', customerCtr.selCustomers);	
 module.exports = router;
