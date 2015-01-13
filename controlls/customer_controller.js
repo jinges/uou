@@ -13,7 +13,7 @@ var CustomerCtr = {
 			name: req.param('name'),
 			userName: req.param('username'),
 			passWord: unit.setPassword( req.param('password') ),
-			regDate: new Date()
+			regDate: req.param('date')
 		}
 
 		Customer.save(customer, function (err, obj){
@@ -101,16 +101,13 @@ var CustomerCtr = {
 			return res.json(obj);
 		})
 	},
-	delCustomer: function (req, res) {  //删除用户(暂时还有问题)
-		var Mid  = req.param('mid'),
-			arrId = req.param('arrId');
-
-		//还有问题
-		Customer.delete(arrId, function (err) {
+	delCustomer: function (req, res) {  //删除用户
+		var	id = req.param('_id');
+		Customer.delete({'_id': id}, function (err) {
 			if(err){
-				return res.json({ error: err })
+				return res.json({'status': 0, error: err })
 			}
-			return res.json({'success': '删除成功！'});
+			return res.json({'status': 1,'success': '删除成功！'});
 		})
 	},
 	lockCustomer: function (req, res) {  //开启 or 锁定用户
