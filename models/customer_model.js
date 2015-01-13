@@ -9,7 +9,7 @@ var CustomerSchema = new Schema({
 	passWord: String,
 	gender: Number,
 	photo : String,
-	birthDay:String,
+	birthDay: Date,
 	lock: Boolean,
 	wallet: Number,
 	score: {
@@ -41,7 +41,7 @@ var CustomerObj = {
 		}); 
 	},
 	find: function (criterion, callback) {
-		CustomerModel.find(criterion, function (err, customers) {
+		CustomerModel.find(criterion, {'passWord': 0}, function (err, customers) {
 			callback(err, customers);
 		});
 	},
