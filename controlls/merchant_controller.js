@@ -56,7 +56,7 @@ var merchantCtr={
 					_id: unit.createId(),
 					sid: merchant._id,
 					ip: req.ip,
-					dateTime: new Date()
+					creatDate: new Date()
 				}
 				loginRecord.save(obj, function (err) {
 					if (err){
