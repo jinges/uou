@@ -1,0 +1,11 @@
+@media screen and (max-width: 991px) {
+	.sidebar{
+		position: absolute;
+		display: none;
+	}
+    .nav-left-icon{
+    	display: block;
+	    font-size: 25px;
+	    position: absolute;
+	}
+}

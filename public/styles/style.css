@@ -61,7 +61,6 @@ header#top {
     background: url("../images/bg-login.jpg") repeat scroll left top transparent;
     display: block;
     padding-top:10px;
-    margin-bottom: 10px;
 }
 .webtitle{
     margin: 0;
@@ -134,26 +133,22 @@ a#totop:hover, a#totop:focus, a#totop:active{
 }
 /****************      Sidebar      *********************/
 
-#sidebar {
-        width: 230px;
-        height: calc(100% - 65px);
+.sidebar {
+        width: 220px;
+        height: calc(100% - 55px);
         left: 0;
         color: #888;
         font-size: 12px;
         }
 
-#sidebar #sidebar-wrapper {
-                margin: 0 0 0 9px;
-                }
-
 /************ Sidebar Accordion Menu ************/
 
-#sidebar #main-nav {
+.sidebar .main-nav {
                 width: 220px;
                 padding: 0;
                 margin: 0;
                 }
-#sidebar #main-nav li a.nav-top-item {
+.sidebar .main-nav li a.nav-top-item {
                 height: 40px;
                 padding: 10px;
                 color: #959598;
@@ -164,29 +159,29 @@ a#totop:hover, a#totop:focus, a#totop:active{
                 border-bottom: 1px solid #fff;
                 background: #EAEAEA ;
                 }
-#sidebar #main-nav li a.nav-top-item .glyphicon{
+.sidebar .main-nav li a.nav-top-item .glyphicon{
                 padding:0 10px 0 5px;
                 }
 
-#sidebar #main-nav>li>a.current {
+.sidebar .main-nav>li>a.current {
                 color: #26a9e0;
                 font-weight: bold;
                 }
 
-#sidebar #main-nav ul {
+.sidebar .main-nav ul {
                 padding: 0;
                 font-size: 12px;
                 margin: 0;
                 background: #fff;
                 }
 
-#sidebar #main-nav ul li {
+.sidebar .main-nav ul li {
                 list-style: none;
                 margin: 0;
                 padding: 0;
                 }
 
-#sidebar #main-nav ul li a {
+.sidebar .main-nav ul li a {
                 padding: 8px 15px 8px 40px;
                 display: block;
                 color: #959598;
@@ -194,13 +189,13 @@ a#totop:hover, a#totop:focus, a#totop:active{
                 line-height: 1.2em;
                 }
 
-#sidebar #main-nav ul li a:hover,
-#sidebar #main-nav ul li a.current,
-#sidebar #main-nav ul li a.current:hover {
+.sidebar .main-nav ul li a:hover,
+.sidebar .main-nav ul li a.current,
+.sidebar .main-nav ul li a.current:hover {
                 color: #26a9e0;
                 }
 
-#sidebar #main-nav ul li ul a {
+.sidebar .main-nav ul li ul a {
                 padding: 8px 15px 8px 70px;
                 }
 /***************  content  *******************/
@@ -209,7 +204,27 @@ a#totop:hover, a#totop:focus, a#totop:active{
     -webkit-flex: 1 0 0;
     flex: 1 0 0;
 }
-.pagination {
-position: absolute;
-right: 40px;
+thead{
+    background: #EAEAEA;
 }
+.box-title{
+    padding: 5px;
+    border-bottom: 1px solid #EAEAEA;
+}
+.box-title h3 {
+margin: 3px 0 3px 0;
+line-height: 24px;
+font-weight: 400;
+color: #444;
+font-size: 20px;
+}
+.panel-body{
+    padding: 15px;
+}
+.pagination {
+    float: right;
+}
+.nav-left-icon{
+    display: none;
+}
+

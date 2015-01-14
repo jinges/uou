@@ -2,6 +2,9 @@
 	fengliang
 	2015/01/10
 */
+*{
+	font: 16px '微软雅黑';
+}
 .alert{
 	padding: 5px 30px 5px 5px;
 	position: absolute;

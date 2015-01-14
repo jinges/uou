@@ -6,7 +6,7 @@ var loginRecordSchema = new Schema({
 	_id: Schema.Types.ObjectId,
 	Uid: Schema.Types.ObjectId,
 	ip: String,
-	dateTime : Date
+	createDate : Date
 });
 
 var LoginRecordModel = mongoose.model('LoginRecord', loginRecordSchema);

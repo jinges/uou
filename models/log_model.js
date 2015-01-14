@@ -5,7 +5,7 @@ var LogSchema = new Schema({
 	_id: Schema.Types.ObjectId,
 	Uid: Schema.Types.ObjectId,
 	action: Number,
-	createTime: {type: Date, default: Date.now}
+	createDate: {type: Date, default: Date.now}
 });
 
 var LogModel = mongoose.model('Log', LogSchema);

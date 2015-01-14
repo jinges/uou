@@ -29,7 +29,7 @@ router.route('/admin/index')
 router.route('/admin/customer')
 	.get(customerCtr.initCustomer);
 router.get('/api/selCustomers', customerCtr.selCustomers);	
-router.get('/api/delCustomer', customerCtr.delCustomer);
+// router.get('/api/delCustomer', customerCtr.delCustomer);
 
 
 module.exports = router;

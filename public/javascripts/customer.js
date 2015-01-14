@@ -52,9 +52,8 @@ function setTable(){
 				   '<td><input type="checkbox"></td>'+
 		           '<td>'+ item.userName +'</td>'+
 		           '<td>'+ item.name +'</td>'+
-		           '<td>'+ item.gender +'</td>'+
+		           '<td>'+ (item.gender?'男':'女') +'</td>'+
 		           '<td>'+ item.birthDay +'</td>'+
-		           '<td>'+ item.wallet +'</td>'+
 		           '<td>'+ item.score +'</td>'+
 		           '<td>'+ item.lock +'</td>'+
 		           '<td>'+ date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate() +'</td>'+
@@ -99,21 +98,21 @@ $("body").on('click','.pagination li', function () {
 	that.parent().children().eq(currentIndex).addClass('active');
 })
 
-$("body").on('click', '.remove-customer', function () {
-	var tr = $(this).parent().parent(),
-		id = tr.attr('data-id'),
-		index = tr.attr('data-index');
+// $("body").on('click', '.remove-customer', function () {
+// 	var tr = $(this).parent().parent(),
+// 		id = tr.attr('data-id'),
+// 		index = tr.attr('data-index');
 
-	$.get('../api/delCustomer',{'_id': id}, function (result) {
-		if(!result.status){
-			alert('系统错误:'+ result.error);
-			return false;
-		}
-		if(tr.siblings().length > 1){
-			tr.remove();
-			data.splice(index,1);
-		} else{
-			setTable();
-		}
-	})
-})
+// 	$.get('../api/delCustomer',{'_id': id}, function (result) {
+// 		if(!result.status){
+// 			alert('系统错误:'+ result.error);
+// 			return false;
+// 		}
+// 		if(tr.siblings().length > 1){
+// 			tr.remove();
+// 			data.splice(index,1);
+// 		} else{
+// 			setTable();
+// 		}
+// 	})
+// })
