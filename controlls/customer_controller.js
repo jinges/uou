@@ -68,7 +68,7 @@ var CustomerCtr = {
 					_id: unit.createId(),
 					sid: user._id,
 					ip: req.ip,
-					dateTime: new Date()
+					createDate: new Date()
 				}
 				
 				loginRecord.save(obj, function (err) {
