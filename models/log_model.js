@@ -17,8 +17,8 @@ var LogObj = {
 			callback(err, obj);
 		});
 	},
-	delete: function (criterion, callback) {
-		LogModel.remove(criterion, function (err){
+	delete: function (query, callback) {
+		LogModel.remove(query, function (err){
 			callback(err);
 		});
 	}, 
@@ -27,8 +27,8 @@ var LogObj = {
 			callback(err);
 		});
 	},
-	find: function (criterion, callback) {
-		LogModel.find(criterion, function (err, Log) {
+	find: function (query, callback) {
+		LogModel.find(query, function (err, Log) {
 			callback(err, Log);
 		});
 	}

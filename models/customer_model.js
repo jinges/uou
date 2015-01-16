@@ -30,18 +30,18 @@ var CustomerObj = {
 			callback(err, obj);
 		});
 	},
-	delete: function (criterion, callback) {
-		CustomerModel.remove(criterion, function (err) {
+	delete: function (query, callback) {
+		CustomerModel.remove(query, function (err) {
 			callback(err);
 		});
 	},
-	update: function (criterion,customer, callback) {
-		CustomerModel.update( criterion, customer, function (err) {
+	update: function (query,customer, callback) {
+		CustomerModel.update( query, customer, function (err) {
 			callback(err);
 		}); 
 	},
-	find: function (criterion, callback) {
-		CustomerModel.find(criterion, {'passWord': 0}, function (err, customers) {
+	find: function (query, callback) {
+		CustomerModel.find(query, {'passWord': 0}, function (err, customers) {
 			callback(err, customers);
 		});
 	},

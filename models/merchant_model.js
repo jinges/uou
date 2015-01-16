@@ -23,8 +23,8 @@ var MerchantObj  = {
 			callback(err, obj);
 		});
 	},
-	delete: function(criterion, callback){
-		MerchantModel.remove(criterion, function (err){
+	delete: function(query, callback){
+		MerchantModel.remove(query, function (err){
 			callback(err);
 		});
 	},
@@ -33,8 +33,8 @@ var MerchantObj  = {
 			callback(err);
 		});
 	},
-	find: function(criterion, callback){
-		MerchantModel.find(criterion, function (err, merchants){
+	find: function(query, callback){
+		MerchantModel.find(query, function (err, merchants){
 			callback(err, merchants);
 		});
 	}

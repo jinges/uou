@@ -18,8 +18,8 @@ var LoginRecordObj  = {
 			callback(err, obj);
 		});
 	},
-	findOne: function(criterion, callback){
-		LoginRecordModel.findOne(criterion, function (err, loginRecord){
+	findOne: function(query, callback){
+		LoginRecordModel.findOne(query, function (err, loginRecord){
 			callback(err, loginRecord);
 		});
 	}

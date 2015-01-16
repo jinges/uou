@@ -18,8 +18,8 @@ var ScoreObj = {
 			callback(err);
 		});
 	},
-	find: function (criterion, callback) {
-		ScoreModel.find(criterion, function (err, scores) {
+	find: function (query, callback) {
+		ScoreModel.find(query, function (err, scores) {
 			callback(err, scores);
 		});
 	}
