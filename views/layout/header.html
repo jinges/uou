@@ -26,16 +26,16 @@
 	<!-- End of Header -->
 	<div class="main">
 		
-	<% if(success) { %>
+	<% if(local.success) { %>
 	<div class="alert alert-success alert-dismissable">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<%= success %>
+		<%= local.success %>
 	</div>
 	<% } %>
-	<% if(error) { %>
+	<% if(local.error) { %>
 	<div class="alert alert-danger alert-dismissable">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<%= error %>
+		<%= local.error %>
 	</div>
 	<% } %>
 	<% include /side_menu.html %> 
