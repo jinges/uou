@@ -20,8 +20,8 @@ var BlessingsObj = {
 			callback(err, obj);
 		});
 	},
-	delete: function (criterion, callback) {
-		BlessingsModel.remove(criterion, function (err){
+	delete: function (query, callback) {
+		BlessingsModel.remove(query, function (err){
 			callback(err);
 		});
 	}, 
@@ -30,8 +30,8 @@ var BlessingsObj = {
 			callback(err);
 		});
 	},
-	find: function (criterion, callback) {
-		BlessingsModel.find(criterion, function (err, blessings) {
+	find: function (query, callback) {
+		BlessingsModel.find(query, function (err, blessings) {
 			callback(err, blessings);
 		});
 	},
