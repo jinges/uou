@@ -11,6 +11,7 @@ var MerchantSchema = new Schema({
 	email: String,
 	companyName: String,
 	addr: String,
+	itemCount: Number,  //商家下会员数量
 	regDate : Date
 });
 
@@ -28,8 +29,8 @@ var MerchantObj  = {
 			callback(err);
 		});
 	},
-	update: function(Merchant, callback){
-		MerchantModel.update({'_id': Merchant._id}, Merchant, function (err){
+	update: function(query, merchants, callback){
+		MerchantModel.update(query, merchants, function (err){
 			callback(err);
 		});
 	},
