@@ -4,19 +4,15 @@ var Schema = mongoose.Schema;
 var CategorySchema = new Schema ({
 	_id: Schema.Types.ObjectId,
 	mid: Schema.Types.ObjectId,
-	code: Number
 	title: String,
-	count: Number,
-	brand: [
-		{
-			name: String,
-			code: Number,
-			count: Number
-		}
-	]
+	itemCount: Number,  //分类下商品数量
+	sort: Number,
+	lock: {
+		type:Boolean,
+		default: true
+	}
 	createDate: Date 
 }); 
-
 
 var CategoryModel = mongoose.model('Category', CategorySchema);
 
