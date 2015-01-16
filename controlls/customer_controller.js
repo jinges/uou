@@ -1,6 +1,7 @@
 var  async = require('async');
 
 var Customer = require('../models/customer_model');
+var Merchant = require('../controlls/merchant_controller');
 var loginRecord = require('../models/loginRecord_model');
 var ScoreCtr = require('../controlls/score_controller');
 var unit = require('../unit/index');
@@ -16,12 +17,26 @@ var CustomerCtr = {
 			regDate: req.param('date')
 		}
 
-		Customer.save(customer, function (err, obj){
-			if(err){
-			    return res.jsonp({error: err});
+		async.waterfall([
+			function (callback){
+				Customer.save(customer, function (err, user){
+					if(err){
+					    callback(err);
+					}else {
+						callback(err, user[0])
+					}
+				});
+			},
+			function (user, callback){
+				Merchant.upCustomerCount(req.param('mid'),1, function (err) {
+					callback(err, user);
+				});
 			}
-			return res.jsonp(obj);
-		});
+			], function (err, callback) {
+
+			}
+		);
+
 	},
 	checkMember: function (req, res) { //验证用户是否已存在
 		var  userName = req.param('username');
@@ -59,8 +74,8 @@ var CustomerCtr = {
 			},
 			function (user, callback) {
 				// 2 score for login
-				Customer.modifyScore(user._id, 2, function (err) {
-					err ? callback(err) : callback(null, user);
+				this.modifyScore(user._id,2,function (err) {
+					callback(err,user);
 				});
 			},
 			function (user, callback) {
@@ -72,29 +87,32 @@ var CustomerCtr = {
 				}
 				
 				loginRecord.save(obj, function (err) {
-					err ? callback(err) : callback(null, user);
+					callback(err, user);
 				});
 			}
-			], function (err, result){
+			], function (err, customer){
 				if(err) {
 			    	return res.jsonp({error: err});
 				} 
 
-				Customer.modifyScore(result._id, 2, function (err) {
-					ScoreCtr.writeScore(result._id,'登录',2);
-					//暂无处理
-				});
-				return res.jsonp(result);
+				ScoreCtr.writeScore(customer._id,'登录',2);
+
+				return res.jsonp(customer);
 			})
+	},
+	modifyScore: function (id,num, callback){
+		Customer.modifyScore(id, num, function (err) {
+			callback(err);
+		});
 	},
 	/****************** 后台 ************************/
 	initCustomer: function (req, res) {
 		unit.init(req, res, 'admin/customer', '会员管理');
 	},
 	selCustomers : function (req, res) { //会员列表
-		var criterion = req.param('params');
+		var query = req.param('params');
 		
-		Customer.find(criterion, function (err, obj) {
+		Customer.find(query, function (err, obj) {
 			if(err){
 				return res.json({ error: err })
 			}
