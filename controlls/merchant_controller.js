@@ -87,6 +87,14 @@ var merchantCtr={
 	 			error: req.flash('error').toString()
 			})
 		});
+	},
+	upCustomerCount: function(id,num, callback){
+		Merchant.update({'_id': id},
+			{'$inc': {'itemCount': num}}, 
+			function (err) {
+				callback(err);
+			}
+		);
 	}
 };
 
