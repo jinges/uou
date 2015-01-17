@@ -8,9 +8,7 @@ module.exports={
 	init: function (req, res, route, title) {
 		res.render(route, { 
 		    	title: title,
-	 			user: req.session.user,
-	 			success: req.flash('success').toString(),
-	 			error: req.flash('error').toString()
+		    	user: req.session.user
 	 		});
 		},
  	formatDate: function (date){ //格式化日期
