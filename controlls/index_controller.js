@@ -4,7 +4,7 @@ var unit = require('../unit/index');
 
 var indexCtrl = {
 	initPage: function (req, res){
-	   unit.init(req, res, 'admin/index', '首页');
+	    unit.init(req, res, 'admin/index', '首页');
 	}
 }
 
