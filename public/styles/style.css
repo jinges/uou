@@ -218,6 +218,9 @@ font-weight: 400;
 color: #444;
 font-size: 20px;
 }
+.box-tools{
+    padding: 10px 10px 0;
+}
 .panel-body{
     padding: 15px;
 }
