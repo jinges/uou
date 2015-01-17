@@ -35,7 +35,7 @@ var MerchantObj  = {
 		});
 	},
 	find: function(query, callback){
-		MerchantModel.find(query, function (err, merchants){
+		MerchantModel.find(query, {'passWord': 0}, function (err, merchants){
 			callback(err, merchants);
 		});
 	}
