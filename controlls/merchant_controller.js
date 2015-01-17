@@ -6,7 +6,9 @@ var unit = require('../unit/index');
 
 var merchantCtr={ 
 	initSignUp: function (req, res) {
-		unit.init(req, res, 'signup', '注册页面');
+		res.render('signup', {
+			title: '注册页面'
+		});
 	},
 	signUp: function (req, res) {
 		var merchant = req.body;
@@ -17,14 +19,15 @@ var merchantCtr={
 		delete merchant.rePassWord;
 		Merchant.save(merchant, function (err, obj) {
 			if(err){
-				res.flash('error', err);
-				return;
+				return res.flash('error', err);
 			}
 			res.redirect('/login');
 		});
 	},
 	initLogIn: function (req, res){
-	    unit.init(req, res, 'login', '登录');
+	    res.render('login', {
+			title: '登录'
+		});
 	},
 	logIn: function (req, res){
 		var params = req.body,
@@ -67,9 +70,7 @@ var merchantCtr={
 				});
 			}
 			], function (err, result){
-				console.log(result)
 				if(err) {
-				    req.flash('error', err);
 					return res.redirect("/signup");
 				}
 
