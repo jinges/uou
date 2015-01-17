@@ -14,6 +14,9 @@ var categoryCtr = {
 		});
 	}
 	/**************************************/
+	,initEditCategory: function (req, res){
+		unit.init(req, res, 'admin/editcategory', '添加商品分类');
+	}
 	,addCategory: function (req, res) {
 		var obj = {
 			_id: unit.createId(),
@@ -89,3 +92,5 @@ var categoryCtr = {
 		});
 	}
 }
+
+module.exports = categoryCtr;
