@@ -10,7 +10,7 @@ var CategorySchema = new Schema ({
 	lock: {
 		type:Boolean,
 		default: true
-	}
+	},
 	createDate: Date 
 }); 
 
@@ -40,4 +40,4 @@ var CategoryObj = {
 	},
 }
 
-module.exports = GoodsObj;
+module.exports = CategoryObj;
