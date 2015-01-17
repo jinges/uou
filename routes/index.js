@@ -4,11 +4,12 @@ var router = express.Router();
 var indexCtr = require('../controlls/index_controller');
 var merchantCtr = require('../controlls/merchant_controller');
 var customerCtr = require('../controlls/customer_controller');
+var categoryCtr = require('../controlls/category_controller');
 
 /* default */
 router.route('/')
 	.get(function (req, res){
-		res.redirect('/login');
+		res.redirect('/signup');
 	});
 
 /*  sign up  */
@@ -31,5 +32,10 @@ router.route('/admin/customer')
 router.get('/api/selCustomers', customerCtr.selCustomers);	
 // router.get('/api/delCustomer', customerCtr.delCustomer);
 
+/*    admin/category        */
+router.route('/admin/category')
+	.get(categoryCtr.initCategory);
+router.route('/admin/editcategory')
+	.get(categoryCtr.initEditCategory);
 
 module.exports = router;
